@@ -1,15 +1,29 @@
-//Step 2: Dispatch action by making use of react hooks in functional component.
+// Dispatch action by making use of react hooks in functional component.
 // useDispatch to dispatch the action created in slice.
-
-//useSelector hook will provide us the redux-store object and can be de-structured to get the state values.
 //useDispatch hook has to be invoked to set up the dispatcher.
 
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { changeColor} from '../feature/theme'
+
+
 
 const ChangeColor = () => {
+
+const [color, setColor] = useState("");
+const dispatch = useDispatch;
+
+const changeColor = (e) => {
+  dispatch(color);
+}
+
   return (
     <div>
-      <h1>Change color</h1>
+      <input
+        type="text"
+        onChange = {(e) => setColor(e.target.value)}
+      />
+      <button onClick={(e) => {dispatch(changeColor(color))}}>Change Color</button>
     </div>
   )
 }
